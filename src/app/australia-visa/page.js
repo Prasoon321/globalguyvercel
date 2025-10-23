@@ -1,9 +1,7 @@
 // app/australia-visa/page.js
 
 import Link from 'next/link';
-// Optional: If you want to use Next.js Image component for optimization,
-// you would import it and wrap your images.
-// import Image from 'next/image'; 
+import Image from 'next/image'; // <-- Must import Image for optimization
 
 export const metadata = {
     title: 'Australia Visa from UAE | GlobalVisaGuy',
@@ -11,6 +9,11 @@ export const metadata = {
 };
 
 export default function AustraliaVisaPage() {
+    // Define constants for image size placeholders
+    const CONTENT_WIDTH = 900;
+    const CONTENT_HEIGHT = 500;
+    const ICON_SIZE = 25;
+
     return (
         <>
             {/* Page Header Start */}
@@ -18,17 +21,14 @@ export default function AustraliaVisaPage() {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-12">
-                            {/* Page Header Box Start */}
                             <div className="page-header-box">
                                 <h1 className="text-anime-style-3" data-cursor="-opaque">AUSTRALIA</h1>
                                 <nav className="wow fadeInUp">
                                     <ol className="breadcrumb">
-                                        {/* Use Link component */}
                                         <li className="breadcrumb-item"><Link href="/">home</Link></li>
                                     </ol>
                                 </nav>
                             </div>
-                            {/* Page Header Box End */}
                         </div>
                     </div>
                 </div>
@@ -41,71 +41,37 @@ export default function AustraliaVisaPage() {
                     <div className="row">
                         {/* Sidebar (Order 1 for small screens, Order 2 for large screens) */}
                         <div className="col-lg-4 order-lg-1 order-2">
-                            {/* Page Single Sidebar Start */}
                             <div className="page-single-sidebar">
 
-                                {/* Page Single Form Start */}
                                 <div className="page-single-form wow fadeInUp">
                                     <h3>Quick contact</h3>
 
-                                    {/* Contact Form Start - Note: Form submission needs a backend handler (API Route or Server Action) */}
                                     <div className="contact-form">
                                         <form
                                             id="contactForm"
                                             action="#"
                                             method="POST"
                                             data-toggle="validator"
-                                            className="wow fadeInUp" // class -> className
+                                            className="wow fadeInUp"
                                             data-wow-delay="0.25s"
                                         >
                                             <div className="row">
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <input
-                                                        type="text"
-                                                        name="name"
-                                                        className="form-control" // class -> className
-                                                        id="name"
-                                                        placeholder="Your Name"
-                                                        required
-                                                    />
-                                                    <div className="help-block with-errors"></div> {/* class -> className */}
-                                                </div>
-
-                                                <div className="form-group col-md-12 mb-4">
-                                                    <input
-                                                        type="email"
-                                                        name="email"
-                                                        className="form-control"
-                                                        id="email"
-                                                        placeholder="Your Email"
-                                                        required
-                                                    />
+                                                    <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
-
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <input
-                                                        type="text"
-                                                        name="phone"
-                                                        className="form-control"
-                                                        id="phone"
-                                                        placeholder="Your Phone"
-                                                        required
-                                                    />
+                                                    <input type="email" name="email" className="form-control" id="email" placeholder="Your Email" required />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
-
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <textarea
-                                                        name="message"
-                                                        className="form-control"
-                                                        id="message"
-                                                        rows="4"
-                                                        placeholder="Write Message.."
-                                                    ></textarea>
+                                                    <input type="text" name="phone" className="form-control" id="phone" placeholder="Your Phone" required />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
-
+                                                <div className="form-group col-md-12 mb-4">
+                                                    <textarea name="message" className="form-control" id="message" rows="4" placeholder="Write Message.."></textarea>
+                                                    <div className="help-block with-errors"></div>
+                                                </div>
                                                 <div className="col-md-12">
                                                     <button type="submit" className="btn-default">
                                                         send message
@@ -115,7 +81,6 @@ export default function AustraliaVisaPage() {
                                             </div>
                                         </form>
                                     </div>
-                                    {/* Contact Form End */}
                                 </div>
                                 {/* Page Single Form End */}
 
@@ -130,31 +95,25 @@ export default function AustraliaVisaPage() {
 
                                     {/* Sidebar CTA Contact Start */}
                                     <div className="sidebar-cta-contact">
-                                        {/* Sidebar CTA Contact Item Start */}
                                         <div className="sidebar-cta-contact-item">
                                             <div className="icon-box">
-                                                {/* Local image: /public/images/icon-phone-accent.svg */}
-                                                <img src="/images/icon-phone-accent.svg" alt="" />
+                                                {/* FIXED: Converted to Image component. */}
+                                                <Image src="/images/icon-phone-accent.svg" alt="Phone Icon" width={ICON_SIZE} height={ICON_SIZE} />
                                             </div>
                                             <div className="cta-contact-item-content">
                                                 <p>+91 1234567890</p>
                                             </div>
                                         </div>
-                                        {/* Sidebar CTA Contact Item End */}
-
-                                        {/* Sidebar CTA Contact Item Start */}
                                         <div className="sidebar-cta-contact-item">
                                             <div className="icon-box">
-                                                {/* Local image: /public/images/icon-mail-accent.svg */}
-                                                <img src="/images/icon-mail-accent.svg" alt="" />
+                                                {/* FIXED: Converted to Image component. */}
+                                                <Image src="/images/icon-mail-accent.svg" alt="Mail Icon" width={ICON_SIZE} height={ICON_SIZE} />
                                             </div>
                                             <div className="cta-contact-item-content">
                                                 <p>info@domain.com</p>
                                             </div>
                                         </div>
-                                        {/* Sidebar CTA Contact Item End */}
                                     </div>
-                                    {/* Sidebar CTA Contact End */}
                                 </div>
                                 {/* Sidebar CTA Box End */}
                             </div>
@@ -163,25 +122,26 @@ export default function AustraliaVisaPage() {
 
                         {/* Main Content */}
                         <div className="col-lg-8 order-lg-2 order-1">
-                            {/* Country Single Content Start */}
                             <div className="country-single-content">
                                 <h2 className="text-anime-style-3">Australia Visa from UAE</h2>
 
                                 <p className="wow fadeInUp">
                                     Planning to visit Australia from Dubai or elsewhere in the UAE?
-                                    Whether you're traveling for tourism, business, or study,
+                                    Whether you&apos;re traveling for tourism, business, or study,
                                     GlobalVisaGuy makes the process easy. With expert guidance, document
-                                    verification, and complete application handling, we’re your trusted
+                                    verification, and complete application handling, we&apos;re your trusted
                                     partner in getting an Australia visa from the UAE.
                                 </p>
 
                                 {/* Country Featured Image Start */}
                                 <div className="country-single-image">
                                     <figure className="image-anime reveal">
-                                        {/* External image: keeping as <img> for now */}
-                                        <img
+                                        {/* FIXED: Converted to Image component (External Image). */}
+                                        <Image
                                             src="https://visaguy.ae/wp-content/uploads/2023/05/1920x1080-australia.jpg"
                                             alt="Australia Visa from Dubai UAE"
+                                            width={CONTENT_WIDTH} height={CONTENT_HEIGHT}
+                                            unoptimized={true}
                                         />
                                     </figure>
                                 </div>
@@ -209,7 +169,7 @@ export default function AustraliaVisaPage() {
                                     <li>Digital passport-sized photograph (white background)</li>
                                     <li>Emirates ID copy</li>
                                     <li>Marriage certificate (if applicable)</li>
-                                    <li>Children’s birth certificates (if traveling with children)</li>
+                                    <li>Children&apos;s birth certificates (if traveling with children)</li>
                                     <li>Tenancy contract (proof of residence)</li>
                                     <li>NOC and salary certificate from employer</li>
                                     <li>Trade license (for business owners)</li>
@@ -228,16 +188,17 @@ export default function AustraliaVisaPage() {
                                 <p className="wow fadeInUp" data-wow-delay="0.4s">
                                     Planning a holiday in Australia? Let us handle your tourist visa
                                     with complete support — from documentation to embassy coordination.
-                                    We’ll help you avoid delays and ensure your application is submitted
+                                    We&apos;ll help you avoid delays and ensure your application is submitted
                                     correctly the first time.
                                 </p>
 
                                 <div className="country-single-image mt-4 mb-4">
                                     <figure className="image-anime reveal">
-                                        {/* Local image: /public/images/country-entry-img-1.jpg */}
-                                        <img
+                                        {/* FIXED: Converted to Image component (Local Image). */}
+                                        <Image
                                             src="/images/country-entry-img-1.jpg"
                                             alt="Australia Visa Assistance UAE"
+                                            width={CONTENT_WIDTH} height={CONTENT_HEIGHT}
                                         />
                                     </figure>
                                 </div>
@@ -288,11 +249,9 @@ export default function AustraliaVisaPage() {
                                 </p>
 
                                 <div className="about-us-btn wow fadeInUp mt-4" data-wow-delay="0.9s">
-                                    {/* Use Link component, and fix the destination: it should be /contact */}
                                     <Link href="/contact" className="btn-default">Apply Now</Link>
                                 </div>
                             </div>
-                            {/* Country Single Content End */}
                         </div>
                     </div>
                 </div>

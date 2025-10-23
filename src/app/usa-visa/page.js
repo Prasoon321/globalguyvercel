@@ -1,6 +1,7 @@
 // app/usa-visa/page.js
 
 import Link from 'next/link';
+import Image from 'next/image'; // <-- Must import Image for optimization
 
 export const metadata = {
     title: 'US Visa from UAE | GlobalVisaGuy',
@@ -8,6 +9,11 @@ export const metadata = {
 };
 
 export default function USAVisaPage() {
+    // Define constants for image size placeholders
+    const CONTENT_WIDTH = 900;
+    const CONTENT_HEIGHT = 500;
+    const ICON_SIZE = 25; // For sidebar icons
+
     return (
         <>
             {/* Page Header Start */}
@@ -15,17 +21,14 @@ export default function USAVisaPage() {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-12">
-                            {/* Page Header Box Start */}
                             <div className="page-header-box">
                                 <h1 className="text-anime-style-3" data-cursor="-opaque">USA</h1>
                                 <nav className="wow fadeInUp">
                                     <ol className="breadcrumb">
-                                        {/* Use Link component */}
                                         <li className="breadcrumb-item"><Link href="/">home</Link></li>
                                     </ol>
                                 </nav>
                             </div>
-                            {/* Page Header Box End */}
                         </div>
                     </div>
                 </div>
@@ -36,87 +39,50 @@ export default function USAVisaPage() {
             <div className="page-country-single">
                 <div className="container">
                     <div className="row">
-                        {/* Sidebar (Order 1 for small screens, Order 2 for large screens) - Reused Sidebar Structure */}
+                        {/* Sidebar (Order 1 for small screens, Order 2 for large screens) */}
                         <div className="col-lg-4 order-lg-1 order-2">
-                            {/* Page Single Sidebar Start */}
                             <div className="page-single-sidebar">
 
-                                {/* Page Single Form Start */}
                                 <div className="page-single-form wow fadeInUp">
                                     <h3>Quick contact</h3>
 
-                                    {/* Contact Form Start - Note: Form submission needs a backend handler */}
                                     <div className="contact-form">
                                         <form
                                             id="contactForm"
                                             action="#"
                                             method="POST"
                                             data-toggle="validator"
-                                            className="wow fadeInUp" // class -> className
+                                            className="wow fadeInUp"
                                             data-wow-delay="0.25s"
                                         >
                                             <div className="row">
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <input
-                                                        type="text"
-                                                        name="name"
-                                                        className="form-control" // class -> className
-                                                        id="name"
-                                                        placeholder="Your Name"
-                                                        required
-                                                    />
-                                                    <div className="help-block with-errors"></div> {/* class -> className */}
-                                                </div>
-
-                                                <div className="form-group col-md-12 mb-4">
-                                                    <input
-                                                        type="email"
-                                                        name="email"
-                                                        className="form-control"
-                                                        id="email"
-                                                        placeholder="Your Email"
-                                                        required
-                                                    />
+                                                    <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
-
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <input
-                                                        type="text"
-                                                        name="phone"
-                                                        className="form-control"
-                                                        id="phone"
-                                                        placeholder="Your Phone"
-                                                        required
-                                                    />
+                                                    <input type="email" name="email" className="form-control" id="email" placeholder="Your Email" required />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
-
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <textarea
-                                                        name="message"
-                                                        className="form-control"
-                                                        id="message"
-                                                        rows="4"
-                                                        placeholder="Write Message.."
-                                                    ></textarea>
+                                                    <input type="text" name="phone" className="form-control" id="phone" placeholder="Your Phone" required />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
-
+                                                <div className="form-group col-md-12 mb-4">
+                                                    <textarea name="message" className="form-control" id="message" rows="4" placeholder="Write Message.."></textarea>
+                                                    <div className="help-block with-errors"></div>
+                                                </div>
                                                 <div className="col-md-12">
-                                                    <button type="submit" className="btn-default">
-                                                        send message
-                                                    </button>
+                                                    <button type="submit" className="btn-default">send message</button>
                                                     <div id="msgSubmit" className="h3 hidden"></div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
-                                    {/* Contact Form End */}
                                 </div>
                                 {/* Page Single Form End */}
 
-                                {/* Sidebar CTA Box Start - Convert classes, ensure image path is correct */}
+                                {/* Sidebar CTA Box Start */}
                                 <div className="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s">
                                     <div className="sidebar-cta-content">
                                         <h3>how can we help</h3>
@@ -125,8 +91,8 @@ export default function USAVisaPage() {
                                     <div className="sidebar-cta-contact">
                                         <div className="sidebar-cta-contact-item">
                                             <div className="icon-box">
-                                                {/* Local image: /public/images/icon-phone-accent.svg */}
-                                                <img src="/images/icon-phone-accent.svg" alt="Phone Icon" />
+                                                {/* FIXED: Converted to Image component. */}
+                                                <Image src="/images/icon-phone-accent.svg" alt="Phone Icon" width={ICON_SIZE} height={ICON_SIZE} />
                                             </div>
                                             <div className="cta-contact-item-content">
                                                 <p>+91 1234567890</p>
@@ -134,8 +100,8 @@ export default function USAVisaPage() {
                                         </div>
                                         <div className="sidebar-cta-contact-item">
                                             <div className="icon-box">
-                                                {/* Local image: /public/images/icon-mail-accent.svg */}
-                                                <img src="/images/icon-mail-accent.svg" alt="Mail Icon" />
+                                                {/* FIXED: Converted to Image component. */}
+                                                <Image src="/images/icon-mail-accent.svg" alt="Mail Icon" width={ICON_SIZE} height={ICON_SIZE} />
                                             </div>
                                             <div className="cta-contact-item-content">
                                                 <p>info@domain.com</p>
@@ -143,19 +109,17 @@ export default function USAVisaPage() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* Sidebar CTA Box End */}
+
                             </div>
-                            {/* Page Single Sidebar End */}
                         </div>
 
                         {/* Main Content */}
                         <div className="col-lg-8 order-lg-2 order-1">
-                            {/* Country Single Content Start */}
                             <div className="country-single-content">
                                 <h2 className="text-anime-style-3">US Visa from UAE</h2>
 
                                 <p className="wow fadeInUp">
-                                    Planning to travel to the United States from the UAE? Whether you're
+                                    Planning to travel to the United States from the UAE? Whether you&apos;re
                                     visiting for tourism, business, or family, applying for a US visa
                                     can be a detailed process. At GlobalVisaGuy, we make it simple. Our
                                     experts assist you at every step — from application to interview.
@@ -164,10 +128,12 @@ export default function USAVisaPage() {
                                 {/* Country Featured Image Start */}
                                 <div className="country-single-image">
                                     <figure className="image-anime reveal">
-                                        {/* External image: keeping as <img> for now */}
-                                        <img
+                                        {/* FIXED: Converted to Image component (External Image). */}
+                                        <Image
                                             src="https://visaguy.ae/wp-content/uploads/2021/08/1920x1080-usa.jpg"
                                             alt="US Visa from UAE"
+                                            width={CONTENT_WIDTH} height={CONTENT_HEIGHT}
+                                            unoptimized={true}
                                         />
                                     </figure>
                                 </div>
@@ -202,7 +168,7 @@ export default function USAVisaPage() {
                                     <li>DS-160 application confirmation page</li>
                                     <li>Visa interview appointment confirmation</li>
                                     <li>NOC from employer or sponsor</li>
-                                    <li>Original passport + residence visa & Emirates ID copy</li>
+                                    <li>Original passport + residence visa &amp; Emirates ID copy</li>
                                     <li>Bank statements for the last 6 months</li>
                                     <li>
                                         Invitation letter (if invited by family, friends, or a company)
@@ -217,7 +183,7 @@ export default function USAVisaPage() {
                                 <ul className="wow fadeInUp" data-wow-delay="0.5s">
                                     <li>Original passport with previous US visa</li>
                                     <li>Recent passport-sized photo (white background)</li>
-                                    <li>Emirates ID & residence visa copy</li>
+                                    <li>Emirates ID &amp; residence visa copy</li>
                                     <li>Previous US visa copy (if applicable)</li>
                                     <li>DS-160 confirmation page and courier receipt</li>
                                 </ul>
@@ -228,7 +194,7 @@ export default function USAVisaPage() {
                                 <p className="wow fadeInUp" data-wow-delay="0.6s">
                                     All applicants between 14 and 79 years must attend a visa interview
                                     unless eligible for Dropbox. Make sure to arrive on time — late
-                                    arrivals will not be accommodated. You’ll be asked about your
+                                    arrivals will not be accommodated. You&apos;ll be asked about your
                                     purpose of visit, so ensure your answers match your documents.
                                 </p>
 
@@ -244,8 +210,13 @@ export default function USAVisaPage() {
 
                                 <div className="country-single-image mt-4 mb-4">
                                     <figure className="image-anime reveal">
-                                        {/* Local image: /public/images/country-entry-img-1.jpg */}
-                                        <img src="/images/country-entry-img-1.jpg" alt="US Visa Support" />
+                                        {/* FIXED: Converted to Image component (External Image). */}
+                                        <Image
+                                            src="https://visaguy.ae/wp-content/uploads/2021/08/1920x1080-usa.jpg"
+                                            alt="US Visa from UAE"
+                                            width={CONTENT_WIDTH} height={CONTENT_HEIGHT}
+                                            unoptimized={true}
+                                        />
                                     </figure>
                                 </div>
 
@@ -270,11 +241,9 @@ export default function USAVisaPage() {
                                 </p>
 
                                 <div className="about-us-btn wow fadeInUp mt-4" data-wow-delay="1.1s">
-                                    {/* Use Link component and fix the destination to /contact */}
                                     <Link href="/contact" className="btn-default">Apply Now</Link>
                                 </div>
                             </div>
-                            {/* Country Single Content End */}
                         </div>
                     </div>
                 </div>

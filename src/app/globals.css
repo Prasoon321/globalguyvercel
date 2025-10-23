@@ -1,0 +1,14 @@
+/* app/globals.css */
+
+/* Import all CSS files from the public/css directory */
+
+/* Core Libraries First */
+@import url('/css/bootstrap.min.css');
+@import url('/css/slicknav.min.css');
+@import url('/css/swiper-bundle.min.css');
+@import url('/css/all.min.css');
+@import url('/css/animate.css');
+@import url('/css/magnific-popup.css');
+@import url('/css/mousecursor.css');
+/* Custom/Overriding Styles Last */
+@import url('/css/custom.css');

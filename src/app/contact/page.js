@@ -1,6 +1,7 @@
 // app/contact/page.js
 
 import Link from 'next/link';
+import Image from 'next/image'; // <-- MUST import Image
 
 export const metadata = {
     title: 'Contact Us | GlobalVisaGuy',
@@ -20,7 +21,6 @@ export default function ContactPage() {
                                 <h1 className="text-anime-style-3" data-cursor="-opaque">Contact us</h1>
                                 <nav className="wow fadeInUp" data-wow-delay="0.25s">
                                     <ol className="breadcrumb">
-                                        {/* Use Link component */}
                                         <li className="breadcrumb-item"><Link href="/">home</Link></li>
                                     </ol>
                                 </nav>
@@ -40,8 +40,8 @@ export default function ContactPage() {
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp">
                                 <div className="icon-box">
-                                    {/* Local Image Path */}
-                                    <img src="/images/icon-phone.svg" alt="Phone Icon" />
+                                    {/* FIXED: Converted to Image component. */}
+                                    <Image src="/images/icon-phone.svg" alt="Phone Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
                                     <h3>contact</h3>
@@ -55,8 +55,8 @@ export default function ContactPage() {
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp" data-wow-delay="0.2s">
                                 <div className="icon-box">
-                                    {/* Local Image Path */}
-                                    <img src="/images/icon-mail.svg" alt="Mail Icon" />
+                                    {/* FIXED: Converted to Image component. */}
+                                    <Image src="/images/icon-mail.svg" alt="Mail Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
                                     <h3>email</h3>
@@ -70,8 +70,8 @@ export default function ContactPage() {
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp" data-wow-delay="0.4s">
                                 <div className="icon-box">
-                                    {/* Local Image Path */}
-                                    <img src="/images/icon-location.svg" alt="Location Icon" />
+                                    {/* FIXED: Converted to Image component. */}
+                                    <Image src="/images/icon-location.svg" alt="Location Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
                                     <h3>address</h3>
@@ -84,8 +84,8 @@ export default function ContactPage() {
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp" data-wow-delay="0.6s">
                                 <div className="icon-box">
-                                    {/* Local Image Path */}
-                                    <img src="/images/icon-watch.svg" alt="Watch Icon" />
+                                    {/* FIXED: Converted to Image component. */}
+                                    <Image src="/images/icon-watch.svg" alt="Watch Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
                                     <h3>time</h3>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                                     action="#" // ACTION needs to be updated to a Next.js API Route or Server Action
                                     method="POST"
                                     data-toggle="validator"
-                                    className="wow fadeInUp" // class -> className
+                                    className="wow fadeInUp"
                                     data-wow-delay="0.4s"
                                 >
                                     <div className="row">
@@ -138,7 +138,7 @@ export default function ContactPage() {
                                             <input
                                                 type="text"
                                                 name="name"
-                                                className="form-control" // class -> className
+                                                className="form-control"
                                                 id="name"
                                                 placeholder="Your Name"
                                                 required
@@ -188,7 +188,7 @@ export default function ContactPage() {
                                     </div>
                                 </form>
                             </div>
-                            {/* Contact Form Start */}
+                            {/* Contact Form End */}
                         </div>
                     </div>
                 </div>

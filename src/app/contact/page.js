@@ -1,14 +1,45 @@
-// app/contact/page.js
+// app/contact/page.jsx
+"use client";
 
 import Link from 'next/link';
-import Image from 'next/image'; // <-- MUST import Image
+import Image from 'next/image';
+import { useEffect } from 'react';
 
-export const metadata = {
-    title: 'Contact Us | GlobalVisaGuy',
-    description: 'Get in touch with the GlobalVisaGuy expert team for personalized visa and immigration assistance.',
+// Client-side function to handle the main WhatsApp Contact Form submission
+const sendToWhatsApp = (event) => {
+    event.preventDefault();
+
+    const form = document.getElementById("contactForm");
+    // Use optional chaining/null checks for safety in client components
+    const name = document.getElementById("name")?.value.trim() || '';
+    const email = document.getElementById("email")?.value.trim() || '';
+    const phone = document.getElementById("phone")?.value.trim() || '';
+    const message = document.getElementById("message")?.value.trim() || '';
+
+    if (!name || !email || !phone || !message) {
+        alert("❌ Please fill in all fields.");
+        return;
+    }
+
+    const finalMessage = `Hello, I have a new inquiry:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`;
+    const encoded = encodeURIComponent(finalMessage);
+    const whatsappURL = `https://wa.me/918448558118?text=${encoded}`;
+
+    window.open(whatsappURL, "_blank");
+    alert("✅ WhatsApp window opened. Thank you!");
+    form.reset();
 };
 
+
 export default function ContactPage() {
+
+    // Initialize WOW.js for animations
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.WOW) {
+            new window.WOW({ live: false }).init();
+        }
+    }, []);
+
     return (
         <>
             {/* Page Header Start */}
@@ -16,7 +47,6 @@ export default function ContactPage() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            {/* Page Header Box Start */}
                             <div className="page-header-box">
                                 <h1 className="text-anime-style-3" data-cursor="-opaque">Contact us</h1>
                                 <nav className="wow fadeInUp" data-wow-delay="0.25s">
@@ -25,72 +55,69 @@ export default function ContactPage() {
                                     </ol>
                                 </nav>
                             </div>
-                            {/* Page Header Box End */}
                         </div>
                     </div>
                 </div>
             </div>
             {/* Page Header End */}
 
-            {/* Page Contact Us Start */}
+            {/* Page Contact Us Start (Contact Info Grid) */}
             <div className="page-contact-us">
                 <div className="container">
                     <div className="row">
-                        {/* Contact Info Item 1: Phone */}
+                        {/* 1. Contact Phone */}
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp">
                                 <div className="icon-box">
-                                    {/* FIXED: Converted to Image component. */}
                                     <Image src="/images/icon-phone.svg" alt="Phone Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
-                                    <h3>contact</h3>
-                                    <p>+01 789 852 654</p>
-                                    <p>+02 458 458 987</p>
+                                    <h3>Contact</h3>
+                                    <p>+971 509170635</p>
+                                    <p>+91 8448558118</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Contact Info Item 2: Email */}
+                        {/* 2. Contact Email */}
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp" data-wow-delay="0.2s">
                                 <div className="icon-box">
-                                    {/* FIXED: Converted to Image component. */}
                                     <Image src="/images/icon-mail.svg" alt="Mail Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
-                                    <h3>email</h3>
-                                    <p>info@domainname.com</p>
-                                    <p>sales@domainname.com</p>
+                                    <h3>Email</h3>
+                                    <p>info@globalvisaguy.com</p>
+                                    <p>sales@globalvisaguy.in</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Contact Info Item 3: Address */}
+                        {/* 3. Address */}
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp" data-wow-delay="0.4s">
                                 <div className="icon-box">
-                                    {/* FIXED: Converted to Image component. */}
                                     <Image src="/images/icon-location.svg" alt="Location Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
-                                    <h3>address</h3>
-                                    <p>1029 Brighton Beach Ave, New York, United States</p>
+                                    <h3>Address</h3>
+                                    <p>Headquarters : Dubai</p>
+                                    <p>Gurugram business center</p>
+                                    <p>Branch - Delhi&nbsp;and&nbsp;Bangalore</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Contact Info Item 4: Time */}
+                        {/* 4. Time */}
                         <div className="col-lg-3 col-md-6">
                             <div className="contact-info-item wow fadeInUp" data-wow-delay="0.6s">
                                 <div className="icon-box">
-                                    {/* FIXED: Converted to Image component. */}
-                                    <Image src="/images/icon-watch.svg" alt="Watch Icon" width={30} height={30} />
+                                    <Image src="/images/icon-watch.svg" alt="Clock Icon" width={30} height={30} />
                                 </div>
                                 <div className="contact-info-content">
                                     <h3>time</h3>
-                                    <p>Mon - Fri, 8 AM - 6 AM</p>
-                                    <p>Saturday, 8 AM - 4 AM</p>
+                                    <p>Mon - Fri, 9 AM - 5 PM</p>
+                                    <p>Saturday, 9 AM - 5 PM</p>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +133,6 @@ export default function ContactPage() {
                         <div className="col-lg-6">
                             {/* Content Form Content Start */}
                             <div className="contact-form-content">
-                                {/* Section Title Start */}
                                 <div className="section-title">
                                     <h3 className="wow fadeInUp">contact information</h3>
                                     <h2 className="text-anime-style-3" data-cursor="-opaque">
@@ -117,7 +143,6 @@ export default function ContactPage() {
                                         is ready to assist you with personalized solutions.
                                     </p>
                                 </div>
-                                {/* Section Title End */}
                             </div>
                             {/* Content Form Content End */}
                         </div>
@@ -127,9 +152,7 @@ export default function ContactPage() {
                             <div className="contact-form">
                                 <form
                                     id="contactForm"
-                                    action="#" // ACTION needs to be updated to a Next.js API Route or Server Action
-                                    method="POST"
-                                    data-toggle="validator"
+                                    onSubmit={sendToWhatsApp} // React handler
                                     className="wow fadeInUp"
                                     data-wow-delay="0.4s"
                                 >
@@ -188,34 +211,12 @@ export default function ContactPage() {
                                     </div>
                                 </form>
                             </div>
-                            {/* Contact Form End */}
+                            {/* Contact Form Start */}
                         </div>
                     </div>
                 </div>
             </div>
             {/* Contact Form Section End */}
-
-            {/* Google Map Start */}
-            <div className="google-map">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            {/* Google Map Start */}
-                            <div className="google-map-iframe">
-                                {/* Note: The src is invalid. You will need to replace this with a valid Google Maps embed URL */}
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-74.08535042841811!3d40.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin"
-                                    allowFullScreen="" // attribute becomes allowFullScreen
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade" // attribute becomes referrerPolicy
-                                ></iframe>
-                            </div>
-                            {/* Google Map End */}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/* Google Map End */}
         </>
     );
 }

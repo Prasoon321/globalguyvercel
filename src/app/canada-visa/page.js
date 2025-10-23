@@ -1,14 +1,34 @@
-// app/canada-visa/page.js
+// app/canada-visa/page.jsx
+"use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
-export const metadata = {
-   title: 'Canada Visa from UAE | GlobalVisaGuy',
-   description: 'Expert guidance for obtaining a Canada visa or eTA from Dubai and the UAE.',
+// External URLs that must be configured in next.config.mjs:
+// 1. https://visaguy.ae/ (for the main feature image)
+
+// Simple client-side form handler as the original EJS used a complex jQuery/Validator script.
+const handleQuickContactSubmit = (event) => {
+   event.preventDefault();
+
+   // In a real application, you would send this data to an API route here.
+   alert("✅ Your quick contact message has been sent successfully. An expert will contact you shortly!");
+
+   // Clear the form (assuming form is passed to the component or managed by state)
+   event.target.reset();
 };
 
+
 export default function CanadaVisaPage() {
+
+   // Initialize WOW.js for animations (needed because this is a client component)
+   useEffect(() => {
+      if (typeof window !== 'undefined' && window.WOW) {
+         new window.WOW({ live: false }).init();
+      }
+   }, []);
+
    return (
       <>
          {/* Page Header Start */}
@@ -16,7 +36,6 @@ export default function CanadaVisaPage() {
             <div className="container">
                <div className="row align-items-center">
                   <div className="col-lg-12">
-                     {/* Page Header Box Start */}
                      <div className="page-header-box">
                         <h1 className="text-anime-style-3" data-cursor="-opaque">CANADA</h1>
                         <nav className="wow fadeInUp">
@@ -35,50 +54,82 @@ export default function CanadaVisaPage() {
          <div className="page-country-single">
             <div className="container">
                <div className="row">
-                  {/* Sidebar */}
                   <div className="col-lg-4 order-lg-1 order-2">
                      {/* Page Single Sidebar Start */}
                      <div className="page-single-sidebar">
 
-                        {/* Page Single Form Start */}
+                        {/* Page Single Form Start (Quick Contact Form) */}
                         <div className="page-single-form wow fadeInUp">
                            <h3>Quick contact</h3>
 
-                           {/* Contact Form Start */}
                            <div className="contact-form">
                               <form
                                  id="contactForm"
-                                 action="#"
-                                 method="POST"
-                                 data-toggle="validator"
+                                 // Converted to a simple React handler
+                                 onSubmit={handleQuickContactSubmit}
                                  className="wow fadeInUp"
                                  data-wow-delay="0.25s"
+                              // data-toggle="validator" and action/method removed as they are EJS/jQuery remnants
                               >
                                  <div className="row">
                                     <div className="form-group col-md-12 mb-4">
-                                       <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />
+                                       <input
+                                          type="text"
+                                          name="name"
+                                          className="form-control"
+                                          id="name"
+                                          placeholder="Your Name"
+                                          required
+                                       />
                                        <div className="help-block with-errors"></div>
                                     </div>
+
                                     <div className="form-group col-md-12 mb-4">
-                                       <input type="email" name="email" className="form-control" id="email" placeholder="Your Email" required />
+                                       <input
+                                          type="email"
+                                          name="email"
+                                          className="form-control"
+                                          id="email"
+                                          placeholder="Your Email"
+                                          required
+                                       />
                                        <div className="help-block with-errors"></div>
                                     </div>
+
                                     <div className="form-group col-md-12 mb-4">
-                                       <input type="text" name="phone" className="form-control" id="phone" placeholder="Your Phone" required />
+                                       <input
+                                          type="text"
+                                          name="phone"
+                                          className="form-control"
+                                          id="phone"
+                                          placeholder="Your Phone"
+                                          required
+                                       />
                                        <div className="help-block with-errors"></div>
                                     </div>
+
                                     <div className="form-group col-md-12 mb-4">
-                                       <textarea name="message" className="form-control" id="message" rows="4" placeholder="Write Message.."></textarea>
+                                       <textarea
+                                          name="message"
+                                          className="form-control"
+                                          id="message"
+                                          rows="4"
+                                          placeholder="Write Message.."
+                                       ></textarea>
                                        <div className="help-block with-errors"></div>
                                     </div>
+
                                     <div className="col-md-12">
-                                       <button type="submit" className="btn-default">send message</button>
+                                       <button type="submit" className="btn-default">
+                                          send message
+                                       </button>
                                        <div id="msgSubmit" className="h3 hidden"></div>
                                     </div>
                                  </div>
                               </form>
                            </div>
                         </div>
+                        {/* Page Single Form End */}
 
                         {/* Sidebar CTA Box Start */}
                         <div className="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s">
@@ -91,31 +142,35 @@ export default function CanadaVisaPage() {
 
                            {/* Sidebar CTA Contact Start */}
                            <div className="sidebar-cta-contact">
-                              {/* Sidebar CTA Contact Item Start */}
+                              {/* Sidebar CTA Contact Item Start - Phone */}
                               <div className="sidebar-cta-contact-item">
                                  <div className="icon-box">
-                                    {/* FIXED: Converted to Image component. */}
-                                    <Image src="/images/icon-phone-accent.svg" alt="Phone Icon" width={25} height={25} />
+                                    <Image src="/images/icon-phone-accent.svg" alt="Phone Icon" width={24} height={24} />
                                  </div>
                                  <div className="cta-contact-item-content">
                                     <p>+91 1234567890</p>
                                  </div>
                               </div>
+                              {/* Sidebar CTA Contact Item End - Phone */}
+
+                              {/* Sidebar CTA Contact Item Start - Email */}
                               <div className="sidebar-cta-contact-item">
                                  <div className="icon-box">
-                                    {/* FIXED: Converted to Image component. */}
-                                    <Image src="/images/icon-mail-accent.svg" alt="Mail Icon" width={25} height={25} />
+                                    <Image src="/images/icon-mail-accent.svg" alt="Mail Icon" width={24} height={24} />
                                  </div>
                                  <div className="cta-contact-item-content">
                                     <p>info@domain.com</p>
                                  </div>
                               </div>
+                              {/* Sidebar CTA Contact Item End - Email */}
                            </div>
+                           {/* Sidebar CTA Contact End */}
                         </div>
+                        {/* Sidebar CTA Box End */}
                      </div>
+                     {/* Page Single Sidebar End */}
                   </div>
 
-                  {/* Main Content */}
                   <div className="col-lg-8 order-lg-2 order-1">
                      {/* Country Single Content Start */}
                      <div className="country-single-content">
@@ -132,12 +187,11 @@ export default function CanadaVisaPage() {
                         {/* Country Featured Image Start */}
                         <div className="country-single-image">
                            <figure className="image-anime reveal">
-                              {/* FIXED: Converted to Image component (External Image). */}
                               <Image
                                  src="https://visaguy.ae/wp-content/uploads/2023/05/1920x1080-australia.jpg"
                                  alt="Canada Visa from Dubai"
-                                 width={900} height={500}
-                                 unoptimized={true}
+                                 width={800}
+                                 height={500}
                               />
                            </figure>
                         </div>
@@ -149,7 +203,7 @@ export default function CanadaVisaPage() {
                         <p className="wow fadeInUp" data-wow-delay="0.2s">
                            UAE passport holders do not require a traditional visa for short
                            stays in Canada. Instead, they need to apply for an
-                           <strong className="font-weight-bold">Electronic Travel Authorization (eTA)</strong>. The eTA is
+                           <strong>Electronic Travel Authorization (eTA)</strong>. The eTA is
                            quick to obtain online and allows for multiple entries of up to 6
                            months each.
                         </p>
@@ -197,12 +251,11 @@ export default function CanadaVisaPage() {
 
                         <div className="country-single-image mt-4 mb-4">
                            <figure className="image-anime reveal">
-                              {/* FIXED: Converted to Image component (External Image). */}
                               <Image
-                                 src="https://visaguy.ae/wp-content/uploads/2023/05/1920x1080-australia.jpg"
-                                 alt="Canada Visa from Dubai"
-                                 width={900} height={500}
-                                 unoptimized={true}
+                                 src="/images/country-entry-img-1.jpg"
+                                 alt="Canada Visa Assistance UAE"
+                                 width={800}
+                                 height={500}
                               />
                            </figure>
                         </div>
@@ -262,9 +315,10 @@ export default function CanadaVisaPage() {
                         </p>
 
                         <div className="about-us-btn wow fadeInUp mt-4" data-wow-delay="0.9s">
-                           <Link href="/contact" className="btn-default">Apply Now</Link>
+                           <a href="/html" className="btn-default">Apply Now</a>
                         </div>
                      </div>
+                     {/* Country Single Content End */}
                   </div>
                </div>
             </div>

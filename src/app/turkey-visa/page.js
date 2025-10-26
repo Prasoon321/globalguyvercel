@@ -1,18 +1,32 @@
-// app/turkey-visa/page.js
+// app/turkey-visa/page.jsx
+"use client";
 
 import Link from 'next/link';
-import Image from 'next/image'; // <-- Added Image component import
+import Image from 'next/image';
+import { useEffect } from 'react';
 
-export const metadata = {
-    title: 'Turkey Visa from UAE | GlobalVisaGuy',
-    description: 'Expert guidance for obtaining a Turkey visa or e-Visa from Dubai and the UAE.',
+// External URLs that must be configured in next.config.mjs:
+// 1. https://visaguy.ae/ (for the main feature image)
+
+// Simple client-side form handler as the original EJS used a complex jQuery/Validator script.
+const handleQuickContactSubmit = (event) => {
+    event.preventDefault();
+
+    // In a real application, you would send this data to an API route here.
+    alert("✅ Your quick contact message has been sent successfully. An expert will contact you shortly!");
+
+    // Clear the form 
+    event.target.reset();
 };
 
 export default function TurkeyVisaPage() {
-    // Define constants for image size
-    const CONTENT_WIDTH = 900;
-    const CONTENT_HEIGHT = 500;
-    const ICON_SIZE = 25; // For sidebar icons
+
+    // Initialize WOW.js for animations
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.WOW) {
+            new window.WOW({ live: false }).init();
+        }
+    }, []);
 
     return (
         <>
@@ -30,78 +44,133 @@ export default function TurkeyVisaPage() {
                                 </nav>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            {/* Page Header End */}
+
+            {/* Page Country Single Start */}
+            <div className="page-country-single">
+                <div className="container">
+                    <div className="row">
                         <div className="col-lg-4 order-lg-1 order-2">
+                            {/* Page Single Sidebar Start */}
                             <div className="page-single-sidebar">
+
+                                {/* Page Single Form Start (Quick Contact Form) */}
                                 <div className="page-single-form wow fadeInUp">
                                     <h3>Quick contact</h3>
+
                                     <div className="contact-form">
                                         <form
                                             id="contactForm"
-                                            action="#"
-                                            method="POST"
-                                            data-toggle="validator"
+                                            onSubmit={handleQuickContactSubmit}
                                             className="wow fadeInUp"
                                             data-wow-delay="0.25s"
+                                        // EJS remnants removed: data-toggle="validator", action, method
                                         >
                                             <div className="row">
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />
+                                                    <input
+                                                        type="text"
+                                                        name="name"
+                                                        className="form-control"
+                                                        id="name"
+                                                        placeholder="Your Name"
+                                                        required
+                                                    />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
+
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <input type="email" name="email" className="form-control" id="email" placeholder="Your Email" required />
+                                                    <input
+                                                        type="email"
+                                                        name="email"
+                                                        className="form-control"
+                                                        id="email"
+                                                        placeholder="Your Email"
+                                                        required
+                                                    />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
+
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <input type="text" name="phone" className="form-control" id="phone" placeholder="Your Phone" required />
+                                                    <input
+                                                        type="text"
+                                                        name="phone"
+                                                        className="form-control"
+                                                        id="phone"
+                                                        placeholder="Your Phone"
+                                                        required
+                                                    />
                                                     <div className="help-block with-errors"></div>
                                                 </div>
+
                                                 <div className="form-group col-md-12 mb-4">
-                                                    <textarea name="message" className="form-control" id="message" rows="4" placeholder="Write Message.."></textarea>
+                                                    <textarea
+                                                        name="message"
+                                                        className="form-control"
+                                                        id="message"
+                                                        rows={4}
+                                                        placeholder="Write Message.."
+                                                    ></textarea>
                                                     <div className="help-block with-errors"></div>
                                                 </div>
+
                                                 <div className="col-md-12">
-                                                    <button type="submit" className="btn-default">send message</button>
+                                                    <button type="submit" className="btn-default">
+                                                        send message
+                                                    </button>
                                                     <div id="msgSubmit" className="h3 hidden"></div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
+                                {/* Page Single Form End */}
+
                                 {/* Sidebar CTA Box Start */}
                                 <div className="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s">
+                                    {/* Sidebar CTA Content Start */}
                                     <div className="sidebar-cta-content">
                                         <h3>how can we help</h3>
                                         <p>If you need any helps, please feel free to contact us.</p>
                                     </div>
+                                    {/* Sidebar CTA Content End */}
+
+                                    {/* Sidebar CTA Contact Start */}
                                     <div className="sidebar-cta-contact">
+                                        {/* Sidebar CTA Contact Item Start - Phone */}
                                         <div className="sidebar-cta-contact-item">
                                             <div className="icon-box">
-                                                {/* FIXED: Converted to Image component. */}
-                                                <Image src="/images/icon-phone-accent.svg" alt="Phone Icon" width={ICON_SIZE} height={ICON_SIZE} />
+                                                <Image src="/images/icon-phone-accent.svg" alt="Phone Icon" width={24} height={24} />
                                             </div>
                                             <div className="cta-contact-item-content">
                                                 <p>+91 1234567890</p>
                                             </div>
                                         </div>
+                                        {/* Sidebar CTA Contact Item End - Phone */}
+
+                                        {/* Sidebar CTA Contact Item Start - Email */}
                                         <div className="sidebar-cta-contact-item">
                                             <div className="icon-box">
-                                                {/* FIXED: Converted to Image component. */}
-                                                <Image src="/images/icon-mail-accent.svg" alt="Mail Icon" width={ICON_SIZE} height={ICON_SIZE} />
+                                                <Image src="/images/icon-mail-accent.svg" alt="Mail Icon" width={24} height={24} />
                                             </div>
                                             <div className="cta-contact-item-content">
                                                 <p>info@domain.com</p>
                                             </div>
                                         </div>
+                                        {/* Sidebar CTA Contact Item End - Email */}
                                     </div>
+                                    {/* Sidebar CTA Contact End */}
                                 </div>
-                                {/* Page Single Form End */}
-
+                                {/* Sidebar CTA Box End */}
                             </div>
+                            {/* Page Single Sidebar End */}
                         </div>
 
-                        {/* Main Content */}
                         <div className="col-lg-8 order-lg-2 order-1">
+                            {/* Country Single Content Start */}
                             <div className="country-single-content">
                                 <h2 className="text-anime-style-3">Turkey Visa from UAE</h2>
 
@@ -116,15 +185,15 @@ export default function TurkeyVisaPage() {
                                 {/* Country Featured Image Start */}
                                 <div className="country-single-image">
                                     <figure className="image-anime reveal">
-                                        {/* FIXED: Converted to Image component (External Image). */}
                                         <Image
                                             src="https://visaguy.ae/wp-content/uploads/2021/08/1920x1080-turkey.jpg"
                                             alt="Turkey Visa from Dubai"
-                                            width={CONTENT_WIDTH} height={CONTENT_HEIGHT}
-                                            unoptimized={true}
+                                            width={800} // Set appropriate dimensions
+                                            height={500}
                                         />
                                     </figure>
                                 </div>
+                                {/* Country Featured Image End */}
 
                                 <h3 className="wow fadeInUp" data-wow-delay="0.2s">
                                     How to Apply for a Turkey Visa from UAE
@@ -156,7 +225,7 @@ export default function TurkeyVisaPage() {
                                     <li>Hotel booking, flight reservation, and travel itinerary</li>
                                     <li>No objection letter from employer or sponsor</li>
                                     <li>Travel insurance with minimum EUR 30,000 coverage</li>
-                                    <li>Salary certificate or sponsor’s passport copy</li>
+                                    <li>Salary certificate or sponsor&apos;s passport copy</li>
                                 </ul>
 
                                 <h3 className="wow fadeInUp" data-wow-delay="0.4s">
@@ -195,11 +264,11 @@ export default function TurkeyVisaPage() {
 
                                 <div className="country-single-image mt-4 mb-4">
                                     <figure className="image-anime reveal">
-                                        {/* FIXED: Converted to Image component (Local Image). */}
                                         <Image
                                             src="/images/country-entry-img-1.jpg"
                                             alt="Turkey Visa Assistance UAE"
-                                            width={CONTENT_WIDTH} height={CONTENT_HEIGHT}
+                                            width={800} // Set appropriate dimensions
+                                            height={500}
                                         />
                                     </figure>
                                 </div>
@@ -268,11 +337,11 @@ export default function TurkeyVisaPage() {
                                     <Link href="/contact" className="btn-default">Apply Now</Link>
                                 </div>
                             </div>
+                            {/* Country Single Content End */}
                         </div>
                     </div>
                 </div>
             </div>
-
             {/* Page Country Single End */}
         </>
     );

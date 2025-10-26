@@ -1,15 +1,13 @@
 // app/components/Footer.jsx
-"use client"; // REQUIRED because of the client-side logic (localStorage, alert)
+"use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
-// import { useCallback, useRef } from 'react';
 
-// Client-side function to handle newsletter submission
+// Client-side function to handle newsletter submission (using localStorage)
 const handleNewsletterSubscription = (event) => {
     event.preventDefault();
 
-    // Use event.target to access form elements
     const form = event.target;
     const emailInput = form.elements.mail;
     const email = emailInput.value.trim().toLowerCase();
@@ -19,8 +17,7 @@ const handleNewsletterSubscription = (event) => {
         return;
     }
 
-    // Check localStorage for existing emails
-    // IMPORTANT: LocalStorage is a browser API and can only be accessed client-side.
+    // Client-side local storage access check
     if (typeof window !== 'undefined') {
         const subscribedEmails = JSON.parse(localStorage.getItem("newsletterEmails")) || [];
 
@@ -36,15 +33,12 @@ const handleNewsletterSubscription = (event) => {
             emailInput.value = ""; // Clear input field
         }
     } else {
-        // Fallback for server-side render (shouldn't happen with "use client")
-        alert("Client environment not ready.");
+        // Fallback for server-side render (though this component is client-side)
+        console.warn("Attempted to access localStorage on server.");
     }
 };
 
 export default function Footer() {
-
-    // We will use the handleNewsletterSubscription function directly on the form
-
     return (
         <footer className="main-footer">
             <div className="container">
@@ -52,14 +46,13 @@ export default function Footer() {
                     {/* Column 1: About */}
                     <div className="col-lg-3 col-md-12">
                         <div className="about-footer">
-                            {/* Footer Logo Start: Converted to <Image> with latest Cloudinary URL */}
+                            {/* Footer Logo Start: Using <Image /> with Cloudinary URL */}
                             <div className="footer-logo">
                                 <Image
-                                    // The latest image source from footer.ejs
                                     src="https://res.cloudinary.com/dl3pt7avj/image/upload/v1748626971/yz1agulz7wcupxyqygfx.png"
                                     alt="GlobalVisaGuy Logo"
-                                    width={150} // Required dimension
-                                    height={40} // Required dimension
+                                    width={150}
+                                    height={40}
                                 />
                             </div>
                             {/* Footer Logo End */}
@@ -68,7 +61,7 @@ export default function Footer() {
                                 <p>Your Global Journey Starts Here Trusted Visa Experts</p>
                             </div>
 
-                            {/* Footer Social Link Start (Updated social links) */}
+                            {/* Footer Social Link Start */}
                             <div className="footer-social-links">
                                 <ul>
                                     <li>
@@ -113,12 +106,12 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Column 2: Visa Services (Updated Links) */}
+                    {/* Column 2: Visa Services */}
                     <div className="col-lg-3 col-md-4 col-6">
                         <div className="footer-links">
                             <h3>Visa Services</h3>
                             <ul>
-                                {/* Links from latest footer.ejs */}
+                                {/* Use <Link> for internal navigation */}
                                 <li><Link href="/dubai-visa-change">DUBAI VISA</Link></li>
                                 <li><Link href="/india-tour">INDIA PACKAGE</Link></li>
                                 <li><Link href="/world-tour-packages">WORLD PACKAGE</Link></li>
@@ -128,12 +121,12 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Column 3: Quick Links (Updated Links) */}
+                    {/* Column 3: Quick Links */}
                     <div className="col-lg-3 col-md-3 col-6">
                         <div className="footer-links">
                             <h3>Quick Links</h3>
                             <ul>
-                                {/* Links from latest footer.ejs */}
+                                {/* Use <Link> for internal navigation */}
                                 <li><Link href="/">Home</Link></li>
                                 <li><Link href="/about">About Us</Link></li>
                                 <li><Link href="/services">Countries We Serve</Link></li>
@@ -150,12 +143,11 @@ export default function Footer() {
                                 Enter your email address to get latest updates and offers from us.
                             </p>
 
-                            {/* Newsletter Form: Converted to use the handleNewsletterSubscription function */}
+                            {/* Newsletter Form Start */}
                             <div className="footer-latest-news-form">
                                 <form
                                     id="latestnewsForm"
-                                    action="#"
-                                    method="POST"
+                                    // React handler applied here
                                     onSubmit={handleNewsletterSubscription}
                                 >
                                     <div className="form-group">
@@ -168,9 +160,10 @@ export default function Footer() {
                                             required
                                         />
                                         <button type="submit" className="latestnews-btn">
+                                            {/* Using <Image /> for the arrow icon */}
                                             <Image
                                                 src="/images/arrow-accent.svg"
-                                                alt="Submit"
+                                                alt="Submit Arrow"
                                                 width={20}
                                                 height={20}
                                             />
@@ -178,11 +171,12 @@ export default function Footer() {
                                     </div>
                                 </form>
                             </div>
+                            {/* Newsletter Form End */}
                         </div>
                     </div>
                 </div>
 
-                {/* Footer Copyright Section */}
+                {/* Footer Copyright Section Start */}
                 <div className="footer-copyright">
                     <div className="row align-items-center">
                         <div className="col-md-6">
@@ -194,7 +188,6 @@ export default function Footer() {
                         <div className="col-md-6">
                             <div className="footer-menu">
                                 <ul>
-                                    {/* Footer menu links from EJS */}
                                     <li><Link href="/">home</Link></li>
                                     <li><Link href="/about">about us</Link></li>
                                     <li><Link href="/contact">contact us</Link></li>
@@ -204,6 +197,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
+                {/* Footer Copyright Section End */}
             </div>
         </footer>
     );

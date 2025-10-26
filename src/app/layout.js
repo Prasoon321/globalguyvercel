@@ -174,9 +174,9 @@ export default function RootLayout({ children }) {
         <Script src="/js/SplitText.js" strategy="lazyOnload" />
         <Script src="/js/ScrollTrigger.min.js" strategy="lazyOnload" />
         <Script src="/js/jquery.mb.YTPlayer.min.js" strategy="lazyOnload" />
-        <Script src="/js/wow.min.js" strategy="lazyOnload" />
         <Script src="/js/function.js" strategy="lazyOnload" />
-         */}
+        */}
+        <Script src="/js/wow.min.js" strategy="lazyOnload" />
       </body>
     </html>
   );

@@ -1,10 +1,8 @@
+// app/layout.js
 import Script from "next/script";
 import Image from "next/image";
-import Header from "./components/Header"; // Assuming this is your Header component
-import Footer from "./components/Footer"; // Assuming this is your Footer component
-
-// NOTE: Ensure your global CSS file is imported correctly, usually in a parent file like /app/layout.js
-// If you were using a file named 'globals.css' in the 'app' directory, uncomment the line below.
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./globals.css";
 
 export const metadata = {
@@ -13,10 +11,8 @@ export const metadata = {
   icons: {
     icon: "/images/favicon.png",
   },
-
-  // 2. ONLY KEEP EXTERNAL LINKS (like Google Fonts)
   other: [
-    // GOOGLE FONTS: Handled as external link metadata
+    // GOOGLE FONTS: Loaded correctly here
     {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap'
@@ -30,16 +26,15 @@ export const metadata = {
       href: 'https://fonts.gstatic.com',
       crossOrigin: "anonymous"
     }
-    // ❌ All local CSS files were REMOVED from this list!
   ],
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="zxx">
-
       <body>
-        {/* 2. Custom styles for WhatsApp float (moved from <style> tag) */}
+
+        {/* FIX: Standard style tag to prevent hydration mismatch */}
         <style dangerouslySetInnerHTML={{
           __html: `
           #whatsapp-float {
@@ -70,29 +65,18 @@ export default function RootLayout({ children }) {
           <Image
             src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
             alt="WhatsApp"
-            width={30} // Explicit width and height are required for <Image>
+            width={30}
             height={30}
           />
         </a>
         {/* Whatsupp floating end */}
 
-        {/* 4. Preloader Start (using Next.js <Image />) */}
-        {/* <div className="preloader">
-          <div className="loading-container">
-            <div className="loading"></div>
-            <div id="loading-icon">
-              <Image src="/images/loader.svg" alt="Loading" width={50} height={50} />
-            </div>
-          </div>
-        </div> */}
-        {/* Preloader End */}
+        {/* NOTE: Preloader HTML content removed to eliminate perpetual hang */}
 
-        {/* Topbar Section Start (using className) */}
         <div className="topbar">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-8">
-                {/* Topbar Contact Information Start (Updated content) */}
                 <div className="topbar-contact-info">
                   <ul>
                     <li>
@@ -108,11 +92,9 @@ export default function RootLayout({ children }) {
                     </li>
                   </ul>
                 </div>
-                {/* Topbar Contact Information End */}
               </div>
 
               <div className="col-lg-4">
-                {/* Header Social Icons Start (Updated content) */}
                 <div className="topbar-social-icons">
                   <ul>
                     <li>
@@ -124,26 +106,32 @@ export default function RootLayout({ children }) {
                         <i className="fa-brands fa-instagram"></i>
                       </a>
                     </li>
-                    {/* The EJS code commented out the Facebook and Dribbble links, so I&apos;m removing them here */}
                   </ul>
                 </div>
-                {/* Header Social Icons End */}
               </div>
             </div>
           </div>
         </div>
-        {/* Topbar Section End */}
 
-        {/* Header (Component) */}
         <Header />
-
-        {/* Main Content Area */}
         <main>{children}</main>
-
-        {/* Footer (Component) */}
         <Footer />
 
-        {/* 5. Tawk.to Script (Using Next.js Script component) */}
+        {/* =================================================================== */}
+        {/* SCRIPT LOADING FIXES */}
+
+        {/* 1. JQUERY CORE: Must be loaded first */}
+        <Script src="/js/jquery-3.7.1.min.js" strategy="beforeInteractive" />
+
+        {/* 2. GSAP SCRIPTS: Load after JQuery, required for text animations (GSAP Reference Error Fix) */}
+        <Script src="/js/gsap.min.js" strategy="afterInteractive" />
+        <Script src="/js/SplitText.js" strategy="afterInteractive" />
+        <Script src="/js/ScrollTrigger.min.js" strategy="afterInteractive" />
+
+        {/* 3. WOW.js (Animation setup): Load early but lazily (WOW Reference Error Fix) */}
+        <Script src="/js/wow.min.js" strategy="afterInteractive" />
+
+        {/* 4. Tawk.to Script (Third Party) */}
         <Script id="tawk-to-chat" strategy="afterInteractive">
           {`
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -158,8 +146,8 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* Other JavaScript files are included using Next.js <Script> with appropriate strategies */}
-        {/* <Script src="/js/jquery-3.7.1.min.js" strategy="beforeInteractive" />
+        {/* 5. Other Utility Scripts (Lazy Load) */}
+        {/* Consolidated the redundant bootstrap import */}
         <Script src="/js/bootstrap.min.js" strategy="lazyOnload" />
         <Script src="/js/validator.min.js" strategy="lazyOnload" />
         <Script src="/js/jquery.slicknav.js" strategy="lazyOnload" />
@@ -169,14 +157,10 @@ export default function RootLayout({ children }) {
         <Script src="/js/jquery.magnific-popup.min.js" strategy="lazyOnload" />
         <Script src="/js/SmoothScroll.js" strategy="lazyOnload" />
         <Script src="/js/parallaxie.js" strategy="lazyOnload" />
-        <Script src="/js/gsap.min.js" strategy="lazyOnload" />
         <Script src="/js/magiccursor.js" strategy="lazyOnload" />
-        <Script src="/js/SplitText.js" strategy="lazyOnload" />
-        <Script src="/js/ScrollTrigger.min.js" strategy="lazyOnload" />
         <Script src="/js/jquery.mb.YTPlayer.min.js" strategy="lazyOnload" />
         <Script src="/js/function.js" strategy="lazyOnload" />
-        */}
-        <Script src="/js/wow.min.js" strategy="lazyOnload" />
+
       </body>
     </html>
   );

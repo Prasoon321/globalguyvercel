@@ -2,93 +2,160 @@
 const nextConfig = {
     images: {
         remotePatterns: [
-            // 1. Cloudinary (for Logo)
+            // --- Core Assets & Social Icons ---
             {
                 protocol: 'https',
                 hostname: 'res.cloudinary.com',
                 port: '',
                 pathname: '/dl3pt7avj/image/upload/**',
             },
-            // 2. Wikimedia (for WhatsApp Icon)
             {
                 protocol: 'https',
                 hostname: 'upload.wikimedia.org',
                 port: '',
                 pathname: '/wikipedia/commons/**',
             },
-            // 3. Gokite (for Burj Khalifa image)
+
+            // --- General/Shared Visa Images ---
+            {
+                protocol: 'https',
+                hostname: 'visaguy.ae',
+                port: '',
+                pathname: '/wp-content/uploads/**',
+            },
+
+            // --- Services Page Images (Seamantours) ---
+            {
+                protocol: 'https',
+                hostname: 'www.seamantours.in',
+                port: '',
+                pathname: '/wp-content/uploads/**',
+            },
+
+            // --- Dubai Excursions/World Tour Images ---
             {
                 protocol: 'https',
                 hostname: 'www.gokite.travel',
                 port: '',
                 pathname: '/wp-content/uploads/**',
             },
-            // 4. Mercury Holidays (for Dubai Parks image)
             {
                 protocol: 'https',
                 hostname: 'images.mercuryholidays.co.uk',
                 port: '',
                 pathname: '/**',
             },
-            // 5. Es Dubai (for La Perle image)
             {
                 protocol: 'https',
                 hostname: 'esdubai.com',
                 port: '',
                 pathname: '/**',
             },
-            // 6. Kyka Group (for Garden Glow image)
             {
                 protocol: 'https',
                 hostname: 'kykagroup.com',
                 port: '',
                 pathname: '/wp-content/uploads/**',
             },
-            // 7. Stockfood (for Ski Dubai image 1)
             {
                 protocol: 'https',
                 hostname: 'media01.stockfood.com',
                 port: '',
                 pathname: '/**',
             },
-            // 8. CNTraveler (for Ski Dubai image 2)
             {
                 protocol: 'https',
                 hostname: 'media.cntraveler.com',
                 port: '',
                 pathname: '/**',
             },
-            // 9. Smart Bull Tourism (for IMG Worlds image)
             {
                 protocol: 'https',
                 hostname: 'smartbulltourism.com',
                 port: '',
                 pathname: '/product-images/**',
             },
-            // 10. PR Newswire (for Yas Parks image)
             {
                 protocol: 'https',
                 hostname: 'mma.prnewswire.com',
                 port: '',
                 pathname: '/**',
             },
-            // 11. Kenzly (for Aquaventure image)
             {
                 protocol: 'https',
                 hostname: 'kenzly.com',
                 port: '',
                 pathname: '/**',
             },
-            // 12. Trip Ventura (for Lost Chambers image)
             {
                 protocol: 'https',
                 hostname: 'tripventura.com',
                 port: '',
                 pathname: '/cdn/shop/**',
             },
+            // --- World Tour Images (Maldives/Thailand/Philippines) ---
+            {
+                protocol: 'https',
+                hostname: 'acko-cms.ackoassets.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'img.veenaworld.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.travoticholidays.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.expat.hsbc.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.tripmagics.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'dynamic-media-cdn.tripadvisor.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'cf.bstatic.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'media1.thrillophilia.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'c.regencyholidays.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.datocms-assets.com',
+                port: '',
+                pathname: '/**',
+            },
         ],
     },
-    // Ensure we keep strict mode on for best practices
     reactStrictMode: true,
 };
 
